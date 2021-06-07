@@ -5,3 +5,11 @@
 - [x] Set up react-router
 - [x] Set up styled-components
 - [x] Set up reactive variables
+
+## Day 13, 14
+
+- [x] Day-off
+
+## Day 15
+
+- [x] Admin Login
