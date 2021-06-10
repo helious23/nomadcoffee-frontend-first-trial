@@ -9,6 +9,9 @@ import SignUp from "./screens/SignUp";
 import NotFound from "./screens/NotFound";
 import { ApolloProvider, useReactiveVar } from "@apollo/client";
 import { client, darkModeVar, isLoggedInVar } from "./apollo";
+import Layout from "./components/Layout";
+import Add from "./screens/Add";
+import Detail from "./screens/Detail";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -21,13 +24,29 @@ function App() {
           <Router>
             <Switch>
               <Route path={routes.home} exact>
-                {isLoggedIn ? <Home /> : <Login />}
+                {isLoggedIn ? (
+                  <Layout>
+                    <Home />
+                  </Layout>
+                ) : (
+                  <Login />
+                )}
               </Route>
               {!isLoggedIn ? (
                 <Route path={routes.signUp}>
                   <SignUp />
                 </Route>
               ) : null}
+              <Route path={routes.add}>
+                <Layout>
+                  <Add />
+                </Layout>
+              </Route>
+              <Route path={routes.detail}>
+                <Layout>
+                  <Detail />
+                </Layout>
+              </Route>
               <Route>
                 <NotFound />
               </Route>

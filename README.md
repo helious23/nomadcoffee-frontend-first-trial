@@ -13,3 +13,10 @@
 ## Day 15
 
 - [x] Admin Login
+
+## Day 16
+
+- [x] Show Shops
+- [x] createCoffeeShop without Photo :(
+- [x] editCoffeeShop without Photo :(
+- [x] deleteCoffeeShop

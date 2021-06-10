@@ -27,9 +27,6 @@ export const darkTheme = {
 
 export const GlobalStyles = createGlobalStyle`
     ${reset}
-    input {
-        all:unset;
-    }
     *{
         box-sizing: border-box;
     }
@@ -41,6 +38,7 @@ export const GlobalStyles = createGlobalStyle`
     }
     a{
       text-decoration: none;
+      color: inherit
     }
     
 `;

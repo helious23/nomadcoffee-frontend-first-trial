@@ -17,3 +17,12 @@ export const FatLink = styled.span`
   font-size: 16px;
   color: rgb(142, 142, 142);
 `;
+
+export const Subtitle = styled.div`
+  font-family: "Playball", cursive, sans-serif;
+  font-size: 30px;
+`;
+
+export const FatText = styled.span`
+  font-weight: 600;
+`;

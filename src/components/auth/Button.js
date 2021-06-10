@@ -11,6 +11,7 @@ const Button = styled.input`
   width: 100%;
   border-radius: 3px;
   opacity: ${(props) => (props.disabled ? "0.3" : "1")};
+  cursor: pointer;
 `;
 
 export default Button;
