@@ -66,7 +66,6 @@ const Detail = () => {
   const { id } = useParams();
   const { register, formState, handleSubmit, setError } = useForm();
   const onCompleted = (data) => {
-    console.log(data);
     const {
       editCoffeeShop: { ok, error },
     } = data;
@@ -76,6 +75,7 @@ const Detail = () => {
       });
     }
   };
+
   const [editCoffeeShop, { loading }] = useMutation(EDIT_COFFEESHOP_MUTATION, {
     onCompleted,
   });
@@ -87,7 +87,7 @@ const Detail = () => {
         latitude: data.latitude,
         longitude: data.longitude,
         categories: data.categories,
-        // photos: data.photos[0], ?????
+        // photos: data.photos[0],
       },
     });
   };
@@ -101,8 +101,10 @@ const Detail = () => {
           <Form onSubmit={handleSubmit(onValid)}>
             <FInput
               {...register("photos")}
-              type={"file"}
-              placeholder="카페 사진"
+              type="file"
+              id="photos"
+              name="photos"
+              accept="image/jpg, image/png, image/jpeg"
             />
             <Input {...register("latitude")} type="text" placeholder="위도" />
             <Input {...register("longitude")} type="text" placeholder="경도" />
@@ -168,7 +170,7 @@ const Detail = () => {
             <Button type="submit" value={loading ? "등록 중..." : "수정"} />
           </Form>
           <FormError message={formState?.errors?.result?.message} />
-          <Delete id={id} />
+          <Delete key={id} id={id} />
         </AddFormBox>
       </AddLayout>
     </>

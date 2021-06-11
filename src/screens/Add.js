@@ -58,6 +58,9 @@ const CREATE_COFFEESHOP_MUTATION = gql`
       error
       shop {
         ...ShopsFragment
+        photos {
+          url
+        }
       }
     }
   }
@@ -69,7 +72,7 @@ const Add = () => {
     mode: "onChange",
   });
   const onCompleted = (data) => {
-    console.log(data);
+    // console.log(data);
     const {
       createCoffeeShop: { ok, error },
     } = data;
@@ -86,15 +89,26 @@ const Add = () => {
     }
   );
 
+  let photoFile;
+
+  const onPhotoChange = (event) => {
+    const {
+      target: {
+        files: [file],
+      },
+    } = event;
+    photoFile = file;
+  };
+
   const onValid = (data) => {
-    console.log(data.photos[0]);
+    console.log(data);
     createCoffeeShop({
       variables: {
         name: data.name,
         latitude: data.latitude,
         longitude: data.longitude,
         categories: data.categories,
-        // photos: data.photos[0],
+        photos: photoFile,
       },
     });
   };
@@ -108,8 +122,11 @@ const Add = () => {
           <Form onSubmit={handleSubmit(onValid)}>
             <FInput
               {...register("photos")}
-              type={"file"}
-              placeholder="카페 사진"
+              type="file"
+              id="photos"
+              name="photos"
+              onChange={onPhotoChange}
+              accept="image/jpg, image/png, image/jpeg"
             />
             <Input
               {...register("name", {

@@ -32,6 +32,7 @@ const Delete = ({ id }) => {
         message: error,
       });
     }
+    console.log("deleted");
   };
   const [deleteCoffeeShop] = useMutation(DELETE_COFFEESHOP_MUTATOIN, {
     onCompleted,

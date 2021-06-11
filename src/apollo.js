@@ -1,10 +1,6 @@
-import {
-  ApolloClient,
-  createHttpLink,
-  InMemoryCache,
-  makeVar,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import { createUploadLink } from "apollo-upload-client";
 
 const TOKEN = "TOKEN";
 const DARK_MODE = "DARK_MODE";
@@ -37,8 +33,11 @@ export const disableDarkMode = () => {
   darkModeVar(false);
 };
 
-const httpLink = createHttpLink({
-  uri: "https://challenge-nomadcoffee-backend.herokuapp.com/graphql",
+const httpLink = createUploadLink({
+  uri:
+    process.env.NODE_ENV === "production"
+      ? "https://challenge-nomadcoffee-backend.herokuapp.com/graphql"
+      : "http://loaclhost:4000/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
